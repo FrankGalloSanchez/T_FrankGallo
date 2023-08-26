@@ -6,6 +6,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <link rel="icon" type="image/x-icon" href="Image/Insignia-SRC.png">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <title>Usuarios</title>
 <link href="css/styles.css" rel="stylesheet" />
 <link
@@ -66,8 +67,12 @@
 							<i class="fa-sharp fa-light fa-book-open-reader"></i> Registros
 						</div>
 						<div class="card-body">
-							<button onclick="exportToCSV()">Exportar a CSV</button>
-							<button onclick="exportToExcel()">Exportar a Excel</button>
+						<div class="table-toolbar">
+						    <button class="btn btn-success export-button" onclick="exportToCSV()">Exportar a CSV</button>
+						    <button class="btn btn-primary export-button" onclick="exportToExcel()">Exportar a Excel</button>
+						    <button class="btn btn-danger export-button" onclick="exportToPDF()">Exportar a PDF</button>
+						</div>
+
 							
 							
 							
@@ -123,7 +128,7 @@
         </script>
 							
 							
-							<button onclick="exportToPDF()">Exportar a PDF</button>
+							
 
 							<table class="table caption-top">
 								<thead>

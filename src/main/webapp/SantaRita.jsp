@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="css/Cargando.css">
 </head>
 <body class="contenedor">
-<img class="logo" alt="" src="Image/Insignia-SRC.png">
+<img class="logo" alt="" src="Image/descarga.png">
 <div class="cargando">
 </div>
 	<script

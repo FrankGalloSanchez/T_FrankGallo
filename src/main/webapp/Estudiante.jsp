@@ -5,14 +5,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<link rel="icon" type="image/x-icon" href="Image/Insignia-SRC.png">
+<link rel="icon" type="image/x-icon" href="Image/descarga.png">
 <title>Estudiantes</title>
 <link href="css/styles.css" rel="stylesheet" />
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
-	crossorigin="anonymous"></script>
+	crossorigin="anonymous">
+</script>
 </head>
 <body class="sb-nav-fixed">
 	<jsp:include page="navbar.jsp"></jsp:include>
@@ -23,7 +26,7 @@
 			<main>
 
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">Estudiantes Activas</h1>
+					<h1 class="mt-4">Estudiantes Activos</h1>
 					<div class="card-body">
 						<form method="post" action="#">
 							<div class="mb-2 row">
@@ -32,11 +35,11 @@
 										name="btnActualizar">Actualizar</button>
 								</div>
 
-								<div class="col-sm-3">
+								<div class="col-sm-2">
 									<input type="text" class="form-control" id="names" name="names"
 										placeholder="Ingrese nombre">
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-2">
 									<input type="text" class="form-control" id="last_name"
 										name="last_name" placeholder="Ingrese apellido">
 								</div>
@@ -46,12 +49,12 @@
 										name="number_document" placeholder="Ingrese numero documento">
 								</div>
 
-								<div class="col-sm-1">
+								<div class="col-sm-2">
 									<input type="text" class="form-control" id="grade" name="grade"
 										placeholder="Ingrese grado">
 								</div>
 
-								<div class="col-sm-1" style="width: 10%;">
+								<div class="col-sm-2" style="width: 10%;">
 									<input type="text" class="form-control" id="section"
 										name="section" placeholder="Ingrese sección">
 								</div>
@@ -63,37 +66,44 @@
 									<button type="button" class="btn btn-success float-end mb-2"
 										id="btnNuevo" name="btnNuevo">Nuevo</button>
 								</div>
-
+ 	
 							</div>
 						</form>
 					</div>
 					<div class="card mb-4" id="divResultado">
-						<div class="card-header">
-							<i class="fas fa-table me-1"></i> Registros
-						</div>
-						<div class="card-body">
-							<button onclick="exportToCSV()">Exportar a CSV</button>
-							<button onclick="exportToExcel()">Exportar a Excel</button>
-							<button onclick="exportToPDF()">Exportar a PDF</button>
-							<table class="table caption-top">
-								<thead>
-									<tr>
-										<th scope="col">#</th>
-										<th scope="col">Nombre</th>
-										<th scope="col">Apellido</th>
-										<th scope="col">Tipo Documento</th>
-										<th scope="col">Nº Documento</th>
-										<th scope="col">Correo Electrónico</th>
-										<th scope="col">Nº Celular</th>
-										<th scope="col">Grado</th>
-										<th scope="col">Sección</th>
-										<th scope="col">Acción</th>
-									</tr>
-								</thead>
-								<tbody id="detalleTabla">
-								</tbody>
-							</table>
-						</div>
+			    <div class="card-header">
+			        <i class="fas fa-table me-1"></i> Registros
+			    </div>
+			    <div class="card-body">
+			       <div class="table-toolbar">
+					    <button class="btn btn-success export-button" onclick="exportToCSV()">Exportar a CSV</button>
+					    <button class="btn btn-primary export-button" onclick="exportToExcel()">Exportar a Excel</button>
+					    <button class="btn btn-danger export-button" onclick="exportToPDF()">Exportar a PDF</button>
+					</div>
+
+			        <div class="custom-table">
+			            <table class="table">
+			                <thead>
+			                    <tr>
+			                        <th scope="col">#</th>
+			                        <th scope="col">Nombre</th>
+			                        <th scope="col">Apellido</th>
+			                        <th scope="col">Tipo Documento</th>
+			                        <th scope="col">Nº Documento</th>
+			                        <th scope="col">Correo Electrónico</th>
+			                        <th scope="col">Nº Celular</th>
+			                        <th scope="col">Grado</th>
+			                        <th scope="col">Sección</th>
+			                        <th scope="col">Acción</th>	
+			                    </tr>
+			                </thead>
+			                <tbody id="detalleTabla">
+			                    <!-- Aquí se llenarán los registros dinámicamente -->
+			                </tbody>
+			            </table>
+			        </div>
+			    </div>
+			</div>
 					</div>
 					<div class="card" id="divRegistro" style="display: none;">
 						<div class="card-header">

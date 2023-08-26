@@ -70,6 +70,8 @@
 						<i class="fas fa-angle-down"></i>
 					</div>
 				</a>
+					<a href="login.html" class="btn btn-primary">Salir</a>
+					
 				<div class="collapse" id="collapseAutores"
 					aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 					<nav class="sb-sidenav-menu-nested nav">
