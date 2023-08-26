@@ -5,13 +5,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<link rel="icon" type="image/x-icon" href="Image/Insignia_CentroMujeres.jpg">
+<link rel="icon" type="image/x-icon" href="Image/Insignia-SRC.png">
 <title>Usuarios</title>
 <link href="css/styles.css" rel="stylesheet" />
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 	rel="stylesheet">
 <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+
 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
 	crossorigin="anonymous"></script>
 </head>
@@ -22,7 +26,7 @@
 		<div id="layoutSidenav_content">
 			<main>
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">Usuarios CRUD</h1>
+					<h1 class="mt-4">Usuarios Activos</h1>
 					<div class="card-body">
 						<form method="post" action="#">
 							<div class="mb-2 row">
@@ -31,24 +35,29 @@
 										name="btnActualizar">Actualizar</button>
 								</div>
 
-
-
-								<div class="col-sm-4">
+								<div class="col-sm-3">
 									<input type="text" class="form-control" id="names" name="names"
 										placeholder="Ingrese nombre">
 								</div>
-								<div class="col-sm-4">
+								<div class="col-sm-3">
 									<input type="text" class="form-control" id="last_name"
 										name="last_name" placeholder="Ingrese apellido">
 								</div>
+								
 								<div class="col-sm-2">
+									<input type="text" class="form-control" id="number_document"
+										name="number_document" placeholder="Ingrese numero documento">
+								</div>
+										
+								<div class="col-sm-1 d-flex">
 									<button type="button" class="btn btn-primary mb-2"
 										id="btnBuscar" name="btnBuscar">Buscar</button>
 								</div>
-								<div class="col-sm-2">
+								<div class="col-sm-1 d-flex">
 									<button type="button" class="btn btn-success float-end mb-2"
 										id="btnNuevo" name="btnNuevo">Nuevo</button>
 								</div>
+							</div>
 							</div>
 						</form>
 					</div>
@@ -59,7 +68,63 @@
 						<div class="card-body">
 							<button onclick="exportToCSV()">Exportar a CSV</button>
 							<button onclick="exportToExcel()">Exportar a Excel</button>
+							
+							
+							
+							
+							<!-- EXPORTACIÓN PDF -->
+
+	<script>      
+      function exportToPDF() {
+          const excludedColumns = [10]; // Índice de la columna "Acciones"
+          // Copia de la tabla para eliminar las columnas no deseadas
+          const table = document.querySelector("table").cloneNode(true);
+          table.querySelectorAll("th, td").forEach((cell) => {
+            const columnIndex = cell.cellIndex;
+            if (excludedColumns.includes(columnIndex)) {
+              cell.remove();
+            } 
+          });
+          const element = document.createElement("div");
+          // Agregar título a la hoja
+          const title = document.createElement("h1");
+          title.classList.add("pdf-title");
+          title.textContent = "Tabla de Personas";
+          element.appendChild(title);
+          // Agregar líneas divisorias a las columnas
+          const tableWithLines = document.createElement("table");
+          tableWithLines.classList.add("pdf-table");
+          tableWithLines.style.width = "85%"; // Establecer el ancho de la tabla al 50% del contenedor
+          tableWithLines.style.fontSize = "12px"; // Reducir el tamaño de fuente de la tabla
+          const rows = table.rows;
+          const columns = rows[0].cells.length;
+          for (let i = 0; i < rows.length; i++) {
+            const row = tableWithLines.insertRow();
+            for (let j = 0; j < columns; j++) {
+              const cell = row.insertCell();
+              if (i === 0) {
+                cell.classList.add("pdf-table-header");
+              }
+              cell.innerHTML = rows[i].cells[j].innerHTML;
+            }
+          }
+          element.appendChild(tableWithLines);
+          const opt = {
+            margin: [0.5, 0, 1, 0], // Márgenes superior, derecho, inferior, izquierdo
+            filename: "tabla_persona.pdf",
+            image: { type: "jpeg", quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+          };
+          html2pdf().set(opt).from(element).save();
+        }
+        document.getElementById("btnExportarPDF").addEventListener("click", exportToPDF);
+
+        </script>
+							
+							
 							<button onclick="exportToPDF()">Exportar a PDF</button>
+
 							<table class="table caption-top">
 								<thead>
 									<tr>
@@ -69,9 +134,9 @@
 										<th scope="col">Tipo Documento</th>
 										<th scope="col">Nº Documento</th>
 										<th scope="col">Tipo Usuario</th>
-										<th scope="col">Correo Electronico</th>
+										<th scope="col">Correo Electrónico</th>
 										<th scope="col">Nº Celular</th>
-										<th scope="col">Accion</th>
+										<th scope="col">Acción</th>
 									</tr>
 								</thead>
 								<tbody id="detalleTabla">
@@ -102,7 +167,7 @@
 										required>
 									<div class="valid-feedback">¡El nombre es correcto!</div>
 									<div class="invalid-feedback">Por favor, coloque un
-										nombre valido.</div>
+										nombre válido.</div>
 								</div>
 
 
@@ -112,7 +177,7 @@
 										type="text" class="form-control" id="frmLast_name" required>
 									<div class="valid-feedback">¡El apellido es correcto!</div>
 									<div class="invalid-feedback">Por favor, coloque un
-										apellido valido.</div>
+										apellido válido.</div>
 								</div>
 
 
@@ -136,7 +201,7 @@
 										id="frmNumber_document" maxlength="9" required>
 									<div class="valid-feedback">¡El documento es correcto!</div>
 									<div class="invalid-feedback">Por favor, coloque un
-										nÃºmero de documento valido.</div>
+										número de documento válido.</div>
 								</div>
 
 
@@ -154,19 +219,19 @@
 									<div class="valid-feedback">Recuerda que (D=Directo,
 										P=Profesor, T=Tutor)</div>
 									<div class="invalid-feedback">Por favor, seleccione una
-										opcion valida.</div>
+										opción válida.</div>
 								</div>
 
 
 								<div class="col-md-4">
 									<label for="frmEmail" class="form-label">Correo
-										Electronico</label>
+										ElectrÃ³nico</label>
 									<div class="input-group has-validation">
 										<input type="email" class="form-control" id="frmEmail"
 											aria-describedby="inputGroupPrepend" required>
 										<div class="valid-feedback">¡Se ve bien!</div>
 										<div class="invalid-feedback">Por favor, ingrese un
-											correo electronico valido.</div>
+											correo electrónico válido.</div>
 									</div>
 								</div>
 
@@ -175,9 +240,9 @@
 									<label for="frmCellphone" class="form-label">Nº Celular</label>
 									<input type="text" class="form-control" maxlength="9"
 										id="frmCellphone" required>
-									<div class="valid-feedback">¡Numero Correcto!</div>
+									<div class="valid-feedback">¡Número Correcto!</div>
 									<div class="invalid-feedback">Por favor, ingrese un
-										numero de celular valido que empiece por 9.</div>
+										número de celular válido que empiece por 9.</div>
 								</div>
 
 
@@ -307,7 +372,8 @@
 	function fnBtnBuscar() {
 		let names = document.getElementById("names").value;
 		let last_name = document.getElementById("last_name").value;
-		let url = "UsersBuscar?names=" + names + "&last_name=" + last_name;
+		let number_document = document.getElementById("number_document").value;
+		let url = "UsersBuscar?names=" + names + "&last_name=" + last_name + "&number_document=" + number_document;
 		let xhttp = new XMLHttpRequest();
 		xhttp.open("GET", url, true);
 		xhttp.onreadystatechange = function() {
@@ -804,6 +870,7 @@ function exportToExcel() {
 	  link.click();
 	}
 </script>
+
 	<script>
 function exportToCSV() {
 	  // Obtener la referencia a la tabla
@@ -842,5 +909,9 @@ function exportToCSV() {
 	  link.click();
 }
 </script>
+
+
+
+
 </body>
 </html>

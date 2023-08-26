@@ -27,7 +27,7 @@
 					aria-controls="#collapseUsuarios">
 					<div class="sb-nav-link-icon">
 						<i class="fa-sharp fa-light fa-user-tie"></i>
-					</div> Administrador
+					</div> Usuario
 					<div class="sb-sidenav-collapse-arrow">
 						<i class="fas fa-angle-down"></i>
 					</div>
@@ -42,13 +42,13 @@
 
 				<!-- Transaccionales -->
 				<div class="sb-sidenav-menu-heading">Transaccionales</div>
-				<!-- Categorias -->
+				<!-- Notas -->
 				<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 					data-bs-target="#collapseCategorias" aria-expanded="false"
 					aria-controls="#collapseCategorias">
 					<div class="sb-nav-link-icon">
 						<i class="fa-sharp fa-light fa-folder-open"></i>
-					</div> Transacciona #1
+					</div> Transaccional #1
 					<div class="sb-sidenav-collapse-arrow">
 						<i class="fas fa-angle-down"></i>
 					</div>
@@ -56,11 +56,10 @@
 				<div class="collapse" id="collapseCategorias"
 					aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 					<nav class="sb-sidenav-menu-nested nav">
-						<a class="nav-link" href="categorias.jsp">Lista</a> <a
-							class="nav-link" href="categoriasEliminados.jsp">Eliminados</a>
+						<a class="nav-link" href="Nota.jsp">Nota</a>
 					</nav>
 				</div>
-				<!-- Autores -->
+				<!-- Nota_detalle -->
 				<a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
 					data-bs-target="#collapseAutores" aria-expanded="false"
 					aria-controls="#collapseAutores">
@@ -74,8 +73,7 @@
 				<div class="collapse" id="collapseAutores"
 					aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
 					<nav class="sb-sidenav-menu-nested nav">
-						<a class="nav-link" href="autores.jsp">Lista</a> <a
-							class="nav-link" href="autoresEliminados.jsp">Eliminados</a>
+						<a class="nav-link" href="NotaDetalle.jsp">Detalle de nota</a>
 					</nav>
 				</div>
 			</div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<link rel="icon" type="image/x-icon" href="Image/Insignia_CentroMujeres.jpg">
+<link rel="icon" type="image/x-icon" href="Image/Insignia-SRC.png">
 <title>Estudiantes</title>
 <link href="css/styles.css" rel="stylesheet" />
 <link
@@ -21,8 +21,9 @@
 		<div id="layoutSidenav_content">
 
 			<main>
+
 				<div class="container-fluid px-4">
-					<h1 class="mt-4">Estudiantes CRUD</h1>
+					<h1 class="mt-4">Estudiantes Activas</h1>
 					<div class="card-body">
 						<form method="post" action="#">
 							<div class="mb-2 row">
@@ -30,22 +31,39 @@
 									<button type="button" class="btn d-none" id="btnActualizar"
 										name="btnActualizar">Actualizar</button>
 								</div>
-								<div class="col-sm-4">
+
+								<div class="col-sm-3">
 									<input type="text" class="form-control" id="names" name="names"
 										placeholder="Ingrese nombre">
 								</div>
-								<div class="col-sm-4">
+								<div class="col-sm-3">
 									<input type="text" class="form-control" id="last_name"
 										name="last_name" placeholder="Ingrese apellido">
 								</div>
+
 								<div class="col-sm-2">
-									<button type="button" class="btn btn-primary mb-2"
-										id="btnBuscar" name="btnBuscar">Buscar</button>
+									<input type="text" class="form-control" id="number_document"
+										name="number_document" placeholder="Ingrese numero documento">
 								</div>
-								<div class="col-sm-2">
+
+								<div class="col-sm-1">
+									<input type="text" class="form-control" id="grade" name="grade"
+										placeholder="Ingrese grado">
+								</div>
+
+								<div class="col-sm-1" style="width: 10%;">
+									<input type="text" class="form-control" id="section"
+										name="section" placeholder="Ingrese sección">
+								</div>
+
+
+								<div class="col-sm-1 d-flex">
+									<button type="button" class="btn btn-primary mb-2 me-2"
+										id="btnBuscar" name="btnBuscar">Buscar</button>
 									<button type="button" class="btn btn-success float-end mb-2"
 										id="btnNuevo" name="btnNuevo">Nuevo</button>
 								</div>
+
 							</div>
 						</form>
 					</div>
@@ -55,7 +73,8 @@
 						</div>
 						<div class="card-body">
 							<button onclick="exportToCSV()">Exportar a CSV</button>
-							<button onclick="exportToExcel()">Exportar a Excel</button>						
+							<button onclick="exportToExcel()">Exportar a Excel</button>
+							<button onclick="exportToPDF()">Exportar a PDF</button>
 							<table class="table caption-top">
 								<thead>
 									<tr>
@@ -63,12 +82,12 @@
 										<th scope="col">Nombre</th>
 										<th scope="col">Apellido</th>
 										<th scope="col">Tipo Documento</th>
-										<th scope="col">N° Documento</th>
-										<th scope="col">Correo Electronico</th>
+										<th scope="col">Nº Documento</th>
+										<th scope="col">Correo Electrónico</th>
 										<th scope="col">Nº Celular</th>
 										<th scope="col">Grado</th>
-										<th scope="col">Seccion</th>
-										<th scope="col">Accion</th>
+										<th scope="col">Sección</th>
+										<th scope="col">Acción</th>
 									</tr>
 								</thead>
 								<tbody id="detalleTabla">
@@ -97,7 +116,7 @@
 										required>
 									<div class="valid-feedback">¡Se ve bien!</div>
 									<div class="invalid-feedback">Por favor, coloque algo
-										valido.</div>
+										válido.</div>
 								</div>
 
 								<div class="col-md-4">
@@ -105,7 +124,7 @@
 										type="text" class="form-control" id="frmLast_name" required>
 									<div class="valid-feedback">¡Se ve bien!</div>
 									<div class="invalid-feedback">Por favor, coloque algo
-										valido.</div>
+										válido.</div>
 								</div>
 								<div class="col-md-3">
 									<label for="frmType_document" class="form-label">Tipo
@@ -120,11 +139,11 @@
 								</div>
 								<div class="col-md-3">
 									<label for="frmNumber_document" class="form-label">Nº
-										Documento</label> <input type="number" class="form-control"
-										id="frmNumber_document" required>
-									<div class="valid-feedback">¡Se ve bien!</div>
-									<div class="invalid-feedback">Por favor, coloque algo
-										valido.</div>
+										Documento</label> <input type="text" class="form-control"
+										id="frmNumber_document" maxlength="9" required>
+									<div class="valid-feedback">¡El documento es correcto!</div>
+									<div class="invalid-feedback">Por favor, coloque un
+										número de documento válido.</div>
 								</div>
 								<div class="col-md-4">
 									<label for="frmEmail" class="form-label">Correo
@@ -134,7 +153,7 @@
 											aria-describedby="inputGroupPrepend" required>
 										<div class="valid-feedback">¡Se ve bien!</div>
 										<div class="invalid-feedback">Por favor, coloque algo
-											valido.</div>
+											válido.</div>
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -143,7 +162,7 @@
 										required>
 									<div class="valid-feedback">¡Se ve bien!</div>
 									<div class="invalid-feedback">Por favor, coloque algo
-										valido.</div>
+										válido.</div>
 								</div>
 								<div class="col-md-4">
 									<label for="frmGrade" class="form-label">Grado</label> <select
@@ -158,7 +177,7 @@
 									<div class="invalid-feedback">Seleccione un Grado.</div>
 								</div>
 								<div class="col-md-4">
-									<label for="frmSection" class="form-label">Seccion</label> <select
+									<label for="frmSection" class="form-label">Sección</label> <select
 										class="form-select" id="frmSection" required>
 										<option selected disabled value="">Elige...</option>
 										<option value="A">A</option>
@@ -167,7 +186,7 @@
 										<option value="D">D</option>
 										<option value="E">E</option>
 									</select>
-									<div class="invalid-feedback">Seleccione una Seccion.</div>
+									<div class="invalid-feedback">Seleccione una Sección.</div>
 								</div>
 
 								<div class="col-12">
@@ -187,12 +206,7 @@
 	<script src="js/scripts.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
-	<script src = "https://unpkg.com/jspdf-autotable"></script>
-	<script src = "https://unpkg.com/jspdf "></script>
 	<script>
-	
-	
-	
 	
 	// Constantes del CRUD
 	const ACCION_NUEVO = "NUEVO";
@@ -296,7 +310,10 @@
 	function fnBtnBuscar() {
 		let names = document.getElementById("names").value;
 		let last_name = document.getElementById("last_name").value;
-		let url = "StudentBuscar?names=" + names + "&last_name=" + last_name;
+		let number_document = document.getElementById("number_document").value;
+		let grade = document.getElementById("grade").value;
+		let section = document.getElementById("section").value;
+		let url = "StudentBuscar?names=" + names + "&last_name=" + last_name + "&number_document=" + number_document + "&grade=" + grade + "&section=" + section;
 		let xhttp = new XMLHttpRequest();
 		xhttp.open("GET", url, true);
 		xhttp.onreadystatechange = function() {
@@ -472,15 +489,15 @@
 
 
 	<!-- VALIDACION CAMPO TIPO Y NUMERO DE DOCUMENTO -->
-	<script>
-    // Obtener los campos de selecciÃ³n y entrada
+<script>
+    // Obtener los campos de selección y entrada
     var frmTypeDocumentSelect = document.getElementById('frmType_document');
     var frmNumberDocumentInput = document.getElementById('frmNumber_document');
     var numberDocument = '';
 
     // Agregar event listener para el evento 'change' en el campo de tipo de documento
     frmTypeDocumentSelect.addEventListener('change', function(event) {
-        // Restablecer las clases de validaciÃ³n
+        // Restablecer las clases de validación
         frmNumberDocumentInput.classList.remove('is-valid');
         frmNumberDocumentInput.classList.remove('is-invalid');
         frmTypeDocumentSelect.classList.remove('is-invalid');
@@ -489,38 +506,52 @@
         var selectedType = event.target.value;
         numberDocument = frmNumberDocumentInput.value.trim();
 
-        // Validar el valor ingresado solo si se ha seleccionado un tipo de documento y se ha ingresado un nÃºmero de documento
+        // Validar el valor ingresado solo si se ha seleccionado un tipo de documento y se ha ingresado un número de documento
         if (selectedType !== '' && numberDocument !== '') {
-            if (selectedType === 'DNI' && numberDocument.length === 8) {
-                frmNumberDocumentInput.classList.remove('is-invalid');
-                frmNumberDocumentInput.classList.add('is-valid');
-            } else if (selectedType === 'CNE' && numberDocument.length === 9) {
-                frmNumberDocumentInput.classList.remove('is-invalid');
-                frmNumberDocumentInput.classList.add('is-valid');
-            } else {
-                frmNumberDocumentInput.classList.remove('is-valid');
-                frmNumberDocumentInput.classList.add('is-invalid');
+            if (selectedType === 'DNI') {
+                if (numberDocument.length === 8) {
+                    frmNumberDocumentInput.classList.remove('is-invalid');
+                    frmNumberDocumentInput.classList.add('is-valid');
+                } else {
+                    frmNumberDocumentInput.classList.remove('is-valid');
+                    frmNumberDocumentInput.classList.add('is-invalid');
+                }
+            } else if (selectedType === 'CNE') {
+                if (numberDocument.length === 9) {
+                    frmNumberDocumentInput.classList.remove('is-invalid');
+                    frmNumberDocumentInput.classList.add('is-valid');
+                } else {
+                    frmNumberDocumentInput.classList.remove('is-valid');
+                    frmNumberDocumentInput.classList.add('is-invalid');
+                }
             }
         }
     });
 
-    // Agregar event listener para el evento 'input' en el campo de nÃºmero de documento
+    // Agregar event listener para el evento 'input' en el campo de número de documento
     frmNumberDocumentInput.addEventListener('input', function(event) {
-        // Obtener el valor actual del campo de nÃºmero de documento
+        // Obtener el valor actual del campo de número de documento
         numberDocument = event.target.value.trim();
         var selectedType = frmTypeDocumentSelect.value;
 
-        // Validar el valor ingresado solo si se ha seleccionado un tipo de documento y se ha ingresado un nÃºmero de documento
+        // Validar el valor ingresado solo si se ha seleccionado un tipo de documento y se ha ingresado un número de documento
         if (selectedType !== '' && numberDocument !== '') {
-            if (selectedType === 'DNI' && numberDocument.length === 8) {
-                frmNumberDocumentInput.classList.remove('is-invalid');
-                frmNumberDocumentInput.classList.add('is-valid');
-            } else if (selectedType === 'CNE' && numberDocument.length === 9) {
-                frmNumberDocumentInput.classList.remove('is-invalid');
-                frmNumberDocumentInput.classList.add('is-valid');
-            } else {
-                frmNumberDocumentInput.classList.remove('is-valid');
-                frmNumberDocumentInput.classList.add('is-invalid');
+            if (selectedType === 'DNI') {
+                if (numberDocument.length === 8) {
+                    frmNumberDocumentInput.classList.remove('is-invalid');
+                    frmNumberDocumentInput.classList.add('is-valid');
+                } else {
+                    frmNumberDocumentInput.classList.remove('is-valid');
+                    frmNumberDocumentInput.classList.add('is-invalid');
+                }
+            } else if (selectedType === 'CNE') {
+                if (numberDocument.length === 9) {
+                    frmNumberDocumentInput.classList.remove('is-invalid');
+                    frmNumberDocumentInput.classList.add('is-valid');
+                } else {
+                    frmNumberDocumentInput.classList.remove('is-valid');
+                    frmNumberDocumentInput.classList.add('is-invalid');
+                }
             }
         } else {
             frmNumberDocumentInput.classList.remove('is-valid');
@@ -528,6 +559,7 @@
         }
     });
 </script>
+
 
 	<!-- VALIDACION CAMPO TIPO DE DOCUMENTO -->
 	<script>

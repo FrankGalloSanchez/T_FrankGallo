@@ -1,4 +1,4 @@
-<nav class="sb-topnav navbar navbar-expand navbar-dark" style="background-color: #182551;">
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 	<!-- Navbar Brand-->
 	<a class="navbar-brand ps-3" href="SantaRita.jsp">NotesEdu</a>
 	<!-- Sidebar Toggle-->

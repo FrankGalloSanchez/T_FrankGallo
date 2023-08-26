@@ -82,10 +82,12 @@ public class UsuarioController extends HttpServlet {
 		// Datos
 		String names = request.getParameter("names");
 		String last_name = request.getParameter("last_name");
+		String number_document = request.getParameter("number_document");
 		// Proceso
 		ModeloUsers bean = new ModeloUsers();
 		bean.setNames(names);
 		bean.setLast_name(last_name);
+		bean.setNumber_document(number_document);
 		List<ModeloUsers> lista = service.get(bean);
 		// Preparando el JSON
 		Gson gson = new Gson();

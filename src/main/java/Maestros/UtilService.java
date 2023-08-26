@@ -13,4 +13,13 @@ public class UtilService {
 		return dato;
 	}
 
+	///agregue esto xd
+	public static int setIntegerVacio(Integer dato) {
+	    if (dato == null) {
+	        return 0;
+	    } else {
+	        return dato;
+	    }
+	}
+
 }

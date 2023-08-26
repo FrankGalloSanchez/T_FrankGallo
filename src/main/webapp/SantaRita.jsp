@@ -4,9 +4,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-<link rel="icon" type="image/x-icon" href="Image/Insignia_CentroMujeres.jpg">
+<link rel="icon" type="image/x-icon" href="Image/Insignia-SRC.png">
 <meta charset="UTF-8">
-<title>I.E.P. Centro de Mujeres</title>
+<title>I.E.P. Santa Rita de Cassia</title>
 <script>
     // Espera 3 segundos (3000 milisegundos) y redirige a la página principal
     setTimeout(function(){
@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="css/Cargando.css">
 </head>
 <body class="contenedor">
-<img class="logo" alt="" src="Image/Insignia_CentroMujeres.jpg">
+<img class="logo" alt="" src="Image/Insignia-SRC.png">
 <div class="cargando">
 </div>
 	<script

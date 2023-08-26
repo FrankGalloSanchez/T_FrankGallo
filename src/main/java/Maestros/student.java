@@ -17,7 +17,7 @@ public class student implements CrudServiceSpec<ModeloStudent>, RowMapper<Modelo
 	private final String SQL_SELECT_ACTIVE = "SELECT * FROM student WHERE active='A'";
 	private final String SQL_SELECT_INACTIVE = "SELECT * FROM student WHERE active='I'";
 	private final String SQL_SELECT_ID = "SELECT * FROM student WHERE active='A' AND id=?";
-	private final String SQL_SELECT_LIKE = "SELECT * FROM student WHERE names LIKE ? AND last_name LIKE ? AND active='A'";
+	private final String SQL_SELECT_LIKE = "SELECT * FROM student WHERE names LIKE ? AND last_name LIKE ? AND number_document LIKE ? AND grade LIKE ? AND section LIKE ? AND active='A'";
 	private final String SQL_INSERT = "INSERT INTO student (names, last_name, type_document, number_document, email, cellphone, grade, section) VALUES (?,?,?,?,?,?,?,?)";
 	private final String SQL_UPDATE = "UPDATE student SET names=?, last_name=?, type_document=?, number_document=?, email=?, cellphone=?, grade=?, section=? WHERE id=?";
 	private final String SQL_DELETE = "UPDATE student SET active='I' WHERE id=?";
@@ -94,14 +94,21 @@ public class student implements CrudServiceSpec<ModeloStudent>, RowMapper<Modelo
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		ModeloStudent item;
-		String names, last_name;
+		String names, last_name, number_document, grade, section;
 		names = "%" + UtilService.setStringVacio(bean.getNames()) + "%";
 		last_name = "%" + UtilService.setStringVacio(bean.getLast_name()) + "%";
+		number_document = "%" + UtilService.setStringVacio(bean.getNumber_document()) + "%";
+		grade = "%" + UtilService.setStringVacio(bean.getGrade()) + "%";
+		section = "%" + UtilService.setStringVacio(bean.getSection()) + "%";
+
 		try {
 			cn = AccesoDB.getConnection();
 			pstm = cn.prepareStatement(SQL_SELECT_LIKE);
 			pstm.setString(1, names);
 			pstm.setString(2, last_name);
+			pstm.setString(3, number_document);
+			pstm.setString(4, grade);
+			pstm.setString(5, section);
 			rs = pstm.executeQuery();
 			while(rs.next()) {
 				item = mapRow(rs);

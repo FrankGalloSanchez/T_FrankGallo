@@ -17,7 +17,7 @@ public class users implements CrudServiceSpec<ModeloUsers>, RowMapper<ModeloUser
 	private final String SQL_SELECT_ACTIVE = "SELECT * FROM users WHERE active='A'";
 	private final String SQL_SELECT_INACTIVE = "SELECT * FROM users WHERE active='I'";
 	private final String SQL_SELECT_ID = "SELECT * FROM users WHERE active='A' AND id=?";
-	private final String SQL_SELECT_LIKE = "SELECT * FROM users WHERE names LIKE ? AND last_name LIKE ? AND active='A'";
+	private final String SQL_SELECT_LIKE = "SELECT * FROM users WHERE names LIKE ? AND last_name LIKE ? AND number_document LIKE ? AND active='A'";
 	private final String SQL_INSERT = "INSERT INTO users (names, last_name, type_document, number_document, type_user, email, cellphone) VALUES (?,?,?,?,?,?,?)";
 	private final String SQL_UPDATE = "UPDATE users SET names=?, last_name=?, type_document=?, number_document=?, type_user=?, email=?, cellphone=? WHERE id=?";
 	private final String SQL_DELETE = "UPDATE users SET active='I' WHERE id=?";
@@ -95,14 +95,16 @@ public class users implements CrudServiceSpec<ModeloUsers>, RowMapper<ModeloUser
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		ModeloUsers item;
-		String names, last_name;
+		String names, last_name, number_document;
 		names = "%" + UtilService.setStringVacio(bean.getNames()) + "%";
 		last_name = "%" + UtilService.setStringVacio(bean.getLast_name()) + "%";
+		number_document = "%" + UtilService.setStringVacio(bean.getNumber_document()) + "%";
 		try {
 			cn = AccesoDB.getConnection();
 			pstm = cn.prepareStatement(SQL_SELECT_LIKE);
 			pstm.setString(1, names);
 			pstm.setString(2, last_name);
+			pstm.setString(3, number_document);
 			rs = pstm.executeQuery();
 			while(rs.next()) {
 				item = mapRow(rs);
