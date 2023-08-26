@@ -70,7 +70,17 @@
 						<i class="fas fa-angle-down"></i>
 					</div>
 				</a>
-					<a href="login.html" class="btn btn-primary">Salir</a>
+						<li class="nav-item">
+						    <a id="cerrar_session" href="login.html" class="nav-link text-danger">
+						        <div class="d-flex align-items-center">
+						            <b class="fs-4 me-2">
+						                <ion-icon name="caret-back-circle-outline"></ion-icon>
+						            </b>
+						            <p class="mb-0">Salir</p>
+						        </div>
+						    </a>
+						</li>
+
 					
 				<div class="collapse" id="collapseAutores"
 					aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
